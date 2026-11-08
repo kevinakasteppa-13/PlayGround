@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#08121b" />
+  <title>Avatar: Elemental Clash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}</script>
+</head>
+<body>
+  <main id="game-shell">
+    <div id="viewport"></div>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Elemental Clash home"><span class="brand-mark">✦</span><span>AVATAR<small>ELEMENTAL CLASH</small></span></a>
+      <div class="match-tag"><i></i> SPIRIT ARENA <span>•</span> 01 / 01</div>
+      <button id="pause-btn" class="icon-btn" aria-label="Pause game"><span>Ⅱ</span></button>
+    </header>
+    <section class="hud">
+      <div class="fighter-card player-card">
+        <div class="fighter-head"><div class="portrait air">A</div><div><span class="eyebrow">AVATAR · AIR NOMAD</span><strong>THE LAST AIRBENDER</strong></div><b class="wins">0 W</b></div>
+        <div class="bar-label"><span>VITALITY</span><span id="player-hp-text">100</span></div><div class="health-track"><div id="player-hp" class="health-fill player-fill"></div></div>
+        <div class="bar-label chi-label"><span>CHI FLOW</span><span id="chi-text">100%</span></div><div class="health-track chi-track"><div id="chi-bar" class="health-fill chi-fill"></div></div>
+      </div>
+      <div class="timer"><span>ROUND</span><strong id="timer">01:30</strong><small>BEST OF ONE</small></div>
+      <div class="fighter-card enemy-card">
+        <div class="fighter-head"><b class="wins">CPU</b><div><span class="eyebrow">FIRE NATION · ELITE</span><strong>PRINCE ZUKO</strong></div><div class="portrait fire">Z</div></div>
+        <div class="bar-label"><span id="enemy-hp-text">100</span><span>VITALITY</span></div><div class="health-track"><div id="enemy-hp" class="health-fill enemy-fill"></div></div>
+        <div class="bar-label chi-label"><span id="enemy-status">COMBAT READY</span><span>THREAT</span></div><div class="health-track chi-track"><div class="health-fill threat-fill"></div></div>
+      </div>
+    </section>
+    <div id="toast" class="toast"><span>✦</span><strong>FIREBENDER</strong><em>ASHES TO ASHES</em></div>
+    <div class="crosshair"><span></span></div>
+    <footer class="bottom-hud">
+      <div class="element-selector"><span class="eyebrow">BENDING STYLE</span><div class="elements">
+        <button class="element active" data-element="air" aria-label="Air bending"><i>〰</i><span>AIR</span><kbd>1</kbd></button>
+        <button class="element" data-element="water" aria-label="Water bending"><i>◒</i><span>WATER</span><kbd>2</kbd></button>
+        <button class="element" data-element="earth" aria-label="Earth bending"><i>⬟</i><span>EARTH</span><kbd>3</kbd></button>
+        <button class="element" data-element="fire" aria-label="Fire bending"><i>♨</i><span>FIRE</span><kbd>4</kbd></button>
+      </div></div>
+      <div class="controls-hint"><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span><small>MOVE</small><span class="keycap wide">SPACE</span><small>BEND</small><span class="keycap wide">SHIFT</span><small>DODGE</small></div>
+      <button id="special-btn" class="special-btn"><span class="special-icon">✧</span><span><b>AVATAR STATE</b><small>HOLD TO UNLEASH</small></span><i class="special-meter"><i id="special-fill"></i></i><kbd>R</kbd></button>
+    </footer>
+    <div class="mobile-controls" aria-hidden="true"><div class="dpad"><button data-move="forward">▲</button><div><button data-move="left">◀</button><button data-move="back">▼</button><button data-move="right">▶</button></div></div><div class="mobile-actions"><button class="dodge-touch" data-action="dodge">DODGE</button><button class="attack-touch" data-action="attack">BEND</button></div></div>
+    <div id="overlay" class="overlay">
+      <div class="overlay-panel"><div class="seal">✦</div><span class="eyebrow">THE FOUR NATIONS · ONE ARENA</span><h1>ELEMENTAL<br><em>CLASH</em></h1><p>Master the elements. Face the Fire Nation.<br>Your destiny begins in the Spirit Arena.</p><div class="intro-stats"><span><b>04</b> ELEMENTS</span><i></i><span><b>01</b> CHAMPION</span><i></i><span><b>∞</b> POSSIBILITIES</span></div><button id="start-btn" class="start-btn">ENTER THE ARENA <span>↗</span></button><div class="start-hint">WASD TO MOVE <b>·</b> SPACE TO BEND <b>·</b> 1—4 CHANGE ELEMENT</div></div>
+    </div>
+    <div id="pause-overlay" class="overlay hidden"><div class="overlay-panel pause-panel"><span class="eyebrow">CATCH YOUR BREATH</span><h2>PAUSED</h2><p>The battle is waiting.</p><button id="resume-btn" class="start-btn">RESUME FIGHT <span>↗</span></button></div></div>
+    <div id="result-overlay" class="overlay hidden"><div class="overlay-panel pause-panel"><span class="eyebrow">THE SPIRIT ARENA</span><h2 id="result-title">VICTORY</h2><p id="result-copy">The elements answered your call.</p><button id="rematch-btn" class="start-btn">FIGHT AGAIN <span>↗</span></button></div></div>
+    <div class="corner-note">A fan-made elemental battle · No affiliation with the original series</div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
